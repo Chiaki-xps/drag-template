@@ -10,7 +10,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.31",
+    "lodash": "^4.17.21",
+    "normalize.css": "^8.0.1",
     "sass": "^1.66.1",
+    "v3-grid-layout": "^1.0.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -21,6 +25,7 @@
     "eslint-define-config": "^1.23.0",
     "eslint-plugin-vue": "^9.16.1",
     "prettier": "^3.0.0",
+    "sass-loader": "^13.3.2",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-element-plus": "^0.8.0",
     "unplugin-vue-components": "^0.25.1",
