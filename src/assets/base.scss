@@ -1,0 +1,21 @@
+html,
+body,
+#app {
+  height: 100%;
+}
+
+.el-scrollbar {
+
+  // 避免父组件padding时右侧滚动条占用内容区域
+  &.out-right-bar {
+    margin-right: -10px;
+    padding-right: 10px
+  }
+
+  // 隐藏scrollbar横向滚动条
+  &.hidden-bottom-bar {
+    >.el-scrollbar__bar.is-horizontal {
+      display: none !important;
+    }
+  }
+}
