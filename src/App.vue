@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import tplItems from './components/tpl-items.vue';
+import tplItems from './view/tpl-items.vue';
 
 const handleAdd = () => {
 
