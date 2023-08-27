@@ -49,8 +49,31 @@ const handleToggle = index => {
   }
 };
 
-const handleDrag = () => {
+// 拖拽新增
+const handleDrag = ({ x, y }, item) => {
+  if (mouseInGridContainer(x, y)) {
+    // const position = transformPosition(x, y, item.w);
+    // emit('add-item', { item, ...position });
+  }
+};
 
+// 检测拖拽有效区域
+const mouseInGridContainer = (x, y) => {
+  const rect = gridContainerRect();
+  // if (rect) {
+  //   const { left, right, top, bottom } = rect;
+  //   return x > left && x < right && y > top && y < bottom;
+  // }
+  // return false;
+};
+
+const gridContainerRect = () => {
+  const container = document.querySelector('#screen-container');
+  if (container) {
+    console.log(container.getBoundingClientRect());
+    return container.getBoundingClientRect();
+  }
+  // return false;
 };
 
 const handleClick = () => {
@@ -59,7 +82,7 @@ const handleClick = () => {
 
 // 获取静态文件
 const getAssetsFile = url => {
-  return new URL(`../assets/${url}`, import.meta.url).href;
+  return new URL(`../../assets/${url}`, import.meta.url).href;
 };
 
 </script>
