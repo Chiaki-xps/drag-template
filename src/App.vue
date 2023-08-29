@@ -14,6 +14,8 @@
             v-model:active="layout.active"
             v-model:layout="layout.list"
             editor
+            @edit="handleEdit"
+            @delete="handleDelete"
           />
         </el-scrollbar>
       </div>
@@ -54,6 +56,14 @@ const handleAdd = ({ item, x, y }) => {
   layout.list = [...list, { ...item, x, y, i }];
 
   console.log(layout.list);
+
+};
+
+const handleEdit = () => {
+
+};
+
+const handleDelete = () => {
 
 };
 </script>
