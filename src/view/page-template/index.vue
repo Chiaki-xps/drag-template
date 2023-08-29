@@ -5,7 +5,14 @@
     :is-draggable="editor"
     :is-resizable="editor"
   >
-    123
+    <template v-for="(item, index) in layout" :key="item.i">
+      <grid-item
+        v-bind="item"
+        class="grid-item-page"
+      >
+        123
+      </grid-item>
+    </template>
   </grid-layout>
 </template>
 
@@ -22,4 +29,10 @@ const { layout, editor } = toRefs(props);
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.grid-item-page {
+  background-color: #fff !important;
+  border: 1px solid transparent !important;
+  border-radius: 14px !important;
+}
+</style>
