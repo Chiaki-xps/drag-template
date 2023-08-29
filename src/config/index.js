@@ -5,16 +5,16 @@ const pieChart = [
     label: '基础饼图',
     data: tableData,
     config: { colorField: 'key', angleField: 'value' },
-    w: 8,
-    h: 8,
+    w: 4,
+    h: 4,
     img: 'chart-pie',
   },
   {
     label: '基础饼图',
     data: tableData,
     config: { colorField: 'key', angleField: 'value', innerRadius: 0.5 },
-    w: 8,
-    h: 8,
+    w: 4,
+    h: 4,
     img: 'chart-pie-ring',
   }
 ];
@@ -26,8 +26,8 @@ const barChart = [
     type: 'bar',
     data: tableData,
     config: { xField: 'value', yField: 'key' },
-    w: 8,
-    h: 8,
+    w: 4,
+    h: 4,
     img: 'chart-bar',
   },
   {
@@ -35,8 +35,8 @@ const barChart = [
     type: 'bar',
     data: tableData,
     config: { xField: 'value', yField: 'key', seriesField: 'type', isStack: true, },
-    w: 8,
-    h: 8,
+    w: 4,
+    h: 4,
     img: 'chart-bar-stack',
   },
 ];
