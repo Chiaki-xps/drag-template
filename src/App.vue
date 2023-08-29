@@ -8,7 +8,7 @@
         <c-icon name="save" />
       </div>
 
-      <div class="screen-content">
+      <div id="screen-content" class="screen-content">
         <el-scrollbar>
           <page-template
             v-model:active="layout.active"
@@ -21,8 +21,10 @@
   </div></template>
 
 <script setup>
-import tplItems from './view/tpl-items/index.vue';
+import tplItems from '@/view/tpl-items/index.vue';
 import pageTemplate from '@/view/page-template/index.vue';
+import { getUuid } from '@/utils/index';
+import { gridLayoutConfig } from '@/config/config.js';
 
 const layout = reactive({
   list: [], // 布局
@@ -33,7 +35,25 @@ const layout = reactive({
   editItem: {}, // 编辑的item
 });
 
-const handleAdd = () => {
+const handleAdd = ({ item, x, y }) => {
+  const { list } = layout;
+  // 生成一个唯一的id
+  const i = getUuid();
+
+  // 如果返回的x,y为0，做处理
+  if (!x && !y && list.length) {
+    // 找到最后一个
+    const last = layout.list
+      .sort((a, b) => a.x - b.x)
+      .sort((a, b) => a.y - b.y)
+      .slice(-1)[0];
+    x = last.x + last.w + item.w > gridLayoutConfig.colNum ? 0 : last.x + last.w;
+    y = last.y + last.h;
+  }
+
+  layout.list = [...list, { ...item, x, y, i }];
+
+  console.log(layout.list);
 
 };
 </script>
@@ -71,7 +91,7 @@ const handleAdd = () => {
     }
 
     .screen-content {
-      height: calc(100% - 48px);
+      height: calc(100% - 96px);
       padding-top: 10px;
     }
   }

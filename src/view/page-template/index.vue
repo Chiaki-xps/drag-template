@@ -11,7 +11,7 @@
 
 <script setup>
 import { GridItem, GridLayout } from 'v3-grid-layout';
-import { gridLayoutConfig } from './config.js';
+import { gridLayoutConfig } from '@/config/config.js';
 
 const props = defineProps({
   layout: { type: Array, required: true, default: () => [] },

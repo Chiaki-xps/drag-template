@@ -37,6 +37,9 @@
 
 <script setup>
 import { chartItemList } from '@/config/index';
+import { gridLayoutConfig } from '@/config/config';
+
+const emit = defineEmits(['add-item']);
 
 // 收起列表
 const shrinkList = ref([]);
@@ -52,32 +55,46 @@ const handleToggle = index => {
 // 拖拽新增
 const handleDrag = ({ x, y }, item) => {
   if (mouseInGridContainer(x, y)) {
-    // const position = transformPosition(x, y, item.w);
-    // emit('add-item', { item, ...position });
+    const position = transformPosition(x, y, item.w);
+    emit('add-item', { item, ...position });
   }
 };
 
 // 检测拖拽有效区域
 const mouseInGridContainer = (x, y) => {
   const rect = gridContainerRect();
-  // if (rect) {
-  //   const { left, right, top, bottom } = rect;
-  //   return x > left && x < right && y > top && y < bottom;
-  // }
-  // return false;
+  if (rect) {
+    const { left, right, top, bottom } = rect;
+    return x > left && x < right && y > top && y < bottom;
+  }
+  return false;
 };
 
+// 获取展示画布区域
 const gridContainerRect = () => {
-  const container = document.querySelector('#screen-container');
+  const container = document.querySelector('#screen-content');
   if (container) {
-    console.log(container.getBoundingClientRect());
     return container.getBoundingClientRect();
   }
-  // return false;
+  return false;
 };
 
-const handleClick = () => {
+// 拖拽新增
+const transformPosition = (x, y, w) => {
+  const rect = gridContainerRect();
+  if (rect) {
+    const { left, top, width } = rect;
+    const { colNum, rowHeight } = gridLayoutConfig;
+    // 计算出drag到的宫格位置
+    const posX = parseInt((x - left) / (width / colNum));
+    const posY = parseInt((y - top) / rowHeight);
+    return { x: posX + w > colNum ? colNum - w : posX, y: posY };
+  }
+  return { x: 0, y: 0 };
+};
 
+const handleClick = item => {
+  emit('add-item', { item, x: 0, y: 0 });
 };
 
 // 获取静态文件
