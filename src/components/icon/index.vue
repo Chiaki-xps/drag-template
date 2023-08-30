@@ -14,7 +14,7 @@ const props = defineProps({
   name: { type: String, default: '', },
   size: { type: [Number, String], default: 22 },
   elName: { type: String },
-  color: { type: String },
+  color: { type: String, default: '#8494ab' },
   src: { type: String },
 });
 

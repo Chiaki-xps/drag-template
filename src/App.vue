@@ -63,12 +63,12 @@ const handleEdit = () => {
 
 };
 
-const handleDelete = () => {
-
+const handleDelete = index => {
+  layout.list.splice(index, 1);
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app {
   display: flex;
   box-sizing: border-box;
@@ -90,13 +90,6 @@ const handleDelete = () => {
 
       .el-button {
         margin: 0 10px;
-        padding: 0;
-        border: 0;
-      }
-
-      :deep(.el-icon) {
-        color: #545965;
-        font-size: 22px;
       }
     }
 
