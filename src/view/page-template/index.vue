@@ -14,7 +14,7 @@
         <div class="grid-item-container">
           <div v-if="showLabel" class="grid-item-header">
             <span class="label">{{ item.label ?? (item.i18nLabel ? $t(item.i18nLabel) : '') }}</span>
-            <div class="icon-group" v-if="editor && canManage">
+            <div class="icon-group" v-if="editor">
               <c-icon name="edit" @click="$emit('edit', index)" />
               <c-icon name="delete" @click="$emit('delete', index)" />
             </div>
@@ -41,6 +41,7 @@ defineEmits(['update:active', 'update:layout', 'delete', 'edit']);
 const props = defineProps({
   layout: { type: Array, required: true, default: () => [] },
   editor: { type: Boolean, default: false }, // 拖拽编辑模式
+  showLabel: { type: Boolean, default: true }
 });
 
 const { layout, editor } = toRefs(props);

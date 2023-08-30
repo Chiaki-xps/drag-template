@@ -12,6 +12,7 @@
   "dependencies": {
     "@antv/g2plot": "^2.4.31",
     "@element-plus/icons-vue": "^2.1.0",
+    "default-passive-events": "^2.0.0",
     "element-plus": "^2.3.9",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
