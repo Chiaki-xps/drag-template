@@ -16,7 +16,7 @@
             <span class="label">{{ item.label ?? (item.i18nLabel ? $t(item.i18nLabel) : '') }}</span>
             <div class="icon-group" v-if="editor">
               <c-icon name="edit" @click="$emit('edit', index)" />
-              <c-icon name="delete" @click="$emit('delete', index)" />
+              <c-icon name="delete" color="#ff4d4f" @click="$emit('delete', index)" />
             </div>
           </div>
 
@@ -33,7 +33,7 @@
 <script setup>
 import { GridItem, GridLayout } from 'v3-grid-layout';
 import { gridLayoutConfig } from '@/config/config.js';
-import pageTemplateItem from './page-template-item.vue';
+import pageTemplateItem from './component/page-template-item.vue';
 
 import 'v3-grid-layout/dist/style.css';
 

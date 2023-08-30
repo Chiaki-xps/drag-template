@@ -20,13 +20,27 @@
         </el-scrollbar>
       </div>
     </div>
-  </div></template>
+
+    <!-- <form-drawer
+      v-if="layout.showEdit"
+      v-model:show="layout.showEdit"
+      :item="layout.editItem"
+      @data-change="onEdit"
+    /> -->
+
+    <c-drawer
+      :show="layout.showEdit"
+    />
+  </div>
+</template>
 
 <script setup>
-import tplItems from '@/view/tpl-items/index.vue';
-import pageTemplate from '@/view/page-template/index.vue';
 import { getUuid } from '@/utils/index';
 import { gridLayoutConfig } from '@/config/config.js';
+
+import tplItems from '@/view/tpl-items/index.vue';
+import pageTemplate from '@/view/page-template/index.vue';
+// import formDrawer from '@/view/form-drawer/index.vue';
 
 const layout = reactive({
   list: [], // 布局
@@ -55,12 +69,12 @@ const handleAdd = ({ item, x, y }) => {
 
   layout.list = [...list, { ...item, x, y, i }];
 
-  console.log(layout.list);
-
 };
 
-const handleEdit = () => {
-
+const handleEdit = index => {
+  layout.active = index;
+  layout.editItem = layout.list[index];
+  layout.showEdit = true;
 };
 
 const handleDelete = index => {
