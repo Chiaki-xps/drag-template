@@ -101,8 +101,7 @@ const handleDelete = () => {
     }
 
     .screen-content {
-      height: calc(100% - 96px);
-      padding-top: 10px;
+      height: calc(100% - 38px);
     }
   }
 }

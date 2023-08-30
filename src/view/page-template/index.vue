@@ -35,6 +35,8 @@ import { GridItem, GridLayout } from 'v3-grid-layout';
 import { gridLayoutConfig } from '@/config/config.js';
 import pageTemplateItem from './page-template-item.vue';
 
+import 'v3-grid-layout/dist/style.css';
+
 // const emit =
 defineEmits(['update:active', 'update:layout', 'delete', 'edit']);
 
@@ -58,6 +60,31 @@ const { layout, editor } = toRefs(props);
     box-sizing: border-box;
     padding: 16px;
     height: 100%;
+  }
+
+  .grid-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    height: 24px;
+
+    .label {
+      color: var(--title-color);
+      line-height: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .icon-group {
+      flex-shrink: 0;
+    }
+
+    .el-icon {
+      margin-left: 10px;
+      font-size: 20px;
+    }
   }
 
   .grid-item-content {
