@@ -10,23 +10,59 @@
     @close="closeDrawer"
   >
     <div class="drawer-container">
+
       <div class="drawer-title-wrapper">
-        123
+        <div class="drawer-title">
+          <slot name="title">{{ $attrs.title }}</slot>
+        </div>
+        <c-icon
+          name="close"
+          size="18"
+          :title="false"
+          @click="closeDrawer"
+        />
       </div>
+
+      <div class="drawer-content-wrapper">
+
+        <div class="drawer-content" :style="{ height: `calc(100% - ${footerHeight}px)` }">
+          <el-scrollbar>
+            <slot />
+          </el-scrollbar>
+        </div>
+
+        <div class="drawer-footer" ref="refFooter">
+          <slot name="footer" />
+        </div>
+
+      </div>
+
     </div>
 
   </el-drawer>
 </template>
 
 <script setup>
+
+const emit = defineEmits(['update:show', 'close']);
+
 defineProps({
   show: { type: Boolean, required: true, default: false },
   // scroll: { type: Boolean, required: false, default: true }
 });
 
+const refFooter = ref(null);
+
+const footerHeight = computed(() => {
+  const client = refFooter.value?.getBoundingClientRect?.();
+  return Math.ceil(client?.height ?? 25);
+});
+
 const closeDrawer = () => {
-  console.log('closeDrawer');
+  emit('update:show', false);
+  emit('close');
 };
+
 </script>
 
 <style lang="scss">
@@ -44,37 +80,40 @@ const closeDrawer = () => {
     height: 100%;
   }
 
-  // .drawer-content-wrapper {
-  //   box-sizing: border-box;
-  //   height: calc(100% - 56px);
-  // }
+  .drawer-content-wrapper {
+    box-sizing: border-box;
+    height: calc(100% - 56px);
+  }
 
   // .drawer-content {
   //   padding: 24px;
   //   box-sizing: border-box;
   // }
 
-  // .drawer-title-wrapper {
-  //   @include flex;
-  //   @include flex-between-center;
-  //   @include font-18-bold;
-  //   height: 56px;
-  //   padding: 16px 24px;
-  //   box-sizing: border-box;
-  //   background-color: var(--sub-background-color);
-  //   color: var(--title-color);
-  // }
+  .drawer-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    height: 56px;
+    padding: 16px 24px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #141b2b;
+  }
 
-  // .drawer-title {
-  //   @include flex;
-  //   @include flex-grow;
-  //   @include flex-between-center;
-  //   padding-right: 20px;
-  // }
+  .drawer-title {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+  }
 
-  // .drawer-footer {
-  //   border-top: 1px solid var(--divider-color);
-  //   padding: 12px 24px;
-  // }
+  .drawer-footer {
+    border-top: 1px solid var(--divider-color);
+    padding: 12px 24px;
+  }
 }
 </style>
